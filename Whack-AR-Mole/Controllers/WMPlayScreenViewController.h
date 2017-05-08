@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  WMPlayScreenViewController.h
 //  Whack-AR-Mole
 //
 //  Created by Mai Anh Vu on 5/7/17.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface WMPlayScreenViewController : UIViewController
 
 @end
-
