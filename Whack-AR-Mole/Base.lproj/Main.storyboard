@@ -20,11 +20,26 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VQK-cC-nzg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="VQK-cC-nzg" secondAttribute="trailing" id="6kD-mn-8ha"/>
+                            <constraint firstItem="VQK-cC-nzg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="lgB-qH-E4g"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VQK-cC-nzg" secondAttribute="bottom" id="oWG-gZ-GvP"/>
+                            <constraint firstItem="VQK-cC-nzg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tbk-tr-lFs"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="VQK-cC-nzg" id="tQ2-iY-Ntw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="140" y="99.400299850074973"/>
         </scene>
     </scenes>
 </document>

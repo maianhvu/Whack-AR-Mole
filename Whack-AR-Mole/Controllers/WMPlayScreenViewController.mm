@@ -7,31 +7,70 @@
 //
 
 #import "WMPlayScreenViewController.h"
+#ifdef __cplusplus
+#import "WMContour.h"
+#import "WMFiducial.h"
+#import <opencv2/highgui/cap_ios.h>
+#import <opencv2/imgproc/imgproc.hpp>
+#import <opencv2/features2d/features2d.hpp>
+using namespace cv;
+using namespace std;
+//bool contourComparator(vector<cv::Point> a, vector<cv::Point> b) {
+//    return contourArea(a) < contourArea(b);
+//};
+#endif
 
-@interface WMPlayScreenViewController ()
+@interface WMPlayScreenViewController () <CvVideoCameraDelegate>
+
+// Outlets
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+
+// Properties
+@property (nonatomic, strong) CvVideoCamera *camera;
 
 @end
 
 @implementation WMPlayScreenViewController
 
+//-----------------------------------------------------------------------------
+#pragma mark - Initialization
+//-----------------------------------------------------------------------------
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view.
+    self.camera = [[CvVideoCamera alloc] initWithParentView:self.imageView];
+    self.camera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
+    self.camera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset1280x720;
+    self.camera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
+    self.camera.defaultFPS = 30;
+    self.camera.grayscaleMode = NO;
+    self.camera.delegate = self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    [self.camera start];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
-*/
+
+- (void)processImage:(cv::Mat &)image {
+    // Find the contours
+    NSArray<WMContour *> *squares = [WMContour findSquaresInImage:image];
+    drawContours(image,
+                 [WMContour extractCvContoursFromContours:squares],
+                  -1,
+                 Scalar(0, 255, 255),
+                 2);
+
+    if (squares.count) {
+        WMFiducial *firstFiducial = [[WMFiducial alloc] initWithSquare:squares.firstObject];
+        Mat rectified = [firstFiducial rectifyFromImage:image];
+    }
+}
 
 @end

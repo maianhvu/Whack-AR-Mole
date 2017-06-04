@@ -7,5 +7,4 @@ target 'Whack-AR-Mole' do
 
   # Pods for Whack-AR-Mole
   pod 'OpenCV', '~> 2.4'
-
 end
