@@ -38,12 +38,10 @@
 }
 
 + (NSArray<WMContour *> *)findSquaresInImage:(Mat &)image {
-    Mat mat1;
-    cvtColor(image, mat1, CV_BGR2GRAY);
-    Mat mat2;
-    threshold(mat1, mat2, 120.0, 255.0, THRESH_BINARY_INV);
+    Mat thresh;
+    threshold(image, thresh, 120.0, 255.0, THRESH_BINARY_INV);
     vector<vector<cv::Point>> contours;
-    findContours(mat2, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+    findContours(thresh, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
 
     NSMutableArray<WMContour *> *contourArray = [NSMutableArray array];
     for (auto &contour : contours) {

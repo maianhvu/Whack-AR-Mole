@@ -15,6 +15,10 @@
 		1787355F1EC03A7600288C52 /* WMPlayScreenViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1787355E1EC03A7600288C52 /* WMPlayScreenViewController.mm */; };
 		17A217961EE3AD2700F5C744 /* WMContour.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217951EE3AD2700F5C744 /* WMContour.mm */; };
 		17A217991EE3B02D00F5C744 /* WMFiducial.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217981EE3B02D00F5C744 /* WMFiducial.mm */; };
+		17A217A21EE3E3EF00F5C744 /* WMFiducialClassifier.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217A11EE3E3EF00F5C744 /* WMFiducialClassifier.mm */; };
+		17A217A91EE3E73B00F5C744 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217A81EE3E73B00F5C744 /* UIImage+OpenCV.mm */; };
+		17A217AC1EE475EF00F5C744 /* WMTestViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217AB1EE475EF00F5C744 /* WMTestViewController.mm */; };
+		17A217AF1EE484B600F5C744 /* WMHOGDescriptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217AE1EE484B600F5C744 /* WMHOGDescriptor.mm */; };
 		AB8587682B98FC68EE15ABA1 /* libPods-Whack-AR-Mole.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45E93EF54CDDB027335D6FC /* libPods-Whack-AR-Mole.a */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +28,7 @@
 		178735461EC03A2400288C52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		178735471EC03A2400288C52 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1787354D1EC03A2400288C52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1787354F1EC03A2400288C52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
+		1787354F1EC03A2400288C52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Whack-AR-Mole/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		178735521EC03A2400288C52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		178735541EC03A2400288C52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1787355D1EC03A7600288C52 /* WMPlayScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPlayScreenViewController.h; sourceTree = "<group>"; };
@@ -34,6 +38,14 @@
 		17A217951EE3AD2700F5C744 /* WMContour.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMContour.mm; sourceTree = "<group>"; };
 		17A217971EE3B02D00F5C744 /* WMFiducial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFiducial.h; sourceTree = "<group>"; };
 		17A217981EE3B02D00F5C744 /* WMFiducial.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMFiducial.mm; sourceTree = "<group>"; };
+		17A217A01EE3E3EF00F5C744 /* WMFiducialClassifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFiducialClassifier.h; sourceTree = "<group>"; };
+		17A217A11EE3E3EF00F5C744 /* WMFiducialClassifier.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMFiducialClassifier.mm; sourceTree = "<group>"; };
+		17A217A71EE3E73B00F5C744 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
+		17A217A81EE3E73B00F5C744 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
+		17A217AA1EE475EF00F5C744 /* WMTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTestViewController.h; sourceTree = "<group>"; };
+		17A217AB1EE475EF00F5C744 /* WMTestViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMTestViewController.mm; sourceTree = "<group>"; };
+		17A217AD1EE484B600F5C744 /* WMHOGDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHOGDescriptor.h; sourceTree = "<group>"; };
+		17A217AE1EE484B600F5C744 /* WMHOGDescriptor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMHOGDescriptor.mm; sourceTree = "<group>"; };
 		952FC17739EDBC1A019A4575 /* Pods-Whack-AR-Mole.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whack-AR-Mole.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Whack-AR-Mole/Pods-Whack-AR-Mole.debug.xcconfig"; sourceTree = "<group>"; };
 		F45E93EF54CDDB027335D6FC /* libPods-Whack-AR-Mole.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Whack-AR-Mole.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9718879F67BA8287DC6895F /* Pods-Whack-AR-Mole.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whack-AR-Mole.release.xcconfig"; path = "Pods/Target Support Files/Pods-Whack-AR-Mole/Pods-Whack-AR-Mole.release.xcconfig"; sourceTree = "<group>"; };
@@ -72,6 +84,7 @@
 		178735421EC03A2400288C52 /* Whack-AR-Mole */ = {
 			isa = PBXGroup;
 			children = (
+				17A217A61EE3E71800F5C744 /* Extensions */,
 				17EBFBBB1EC9FD1900CEB597 /* Models */,
 				1787355C1EC03A4000288C52 /* Views */,
 				1787355A1EC03A2A00288C52 /* Controllers */,
@@ -97,6 +110,8 @@
 			children = (
 				1787355D1EC03A7600288C52 /* WMPlayScreenViewController.h */,
 				1787355E1EC03A7600288C52 /* WMPlayScreenViewController.mm */,
+				17A217AA1EE475EF00F5C744 /* WMTestViewController.h */,
+				17A217AB1EE475EF00F5C744 /* WMTestViewController.mm */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -111,6 +126,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		17A217A61EE3E71800F5C744 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				17A217A71EE3E73B00F5C744 /* UIImage+OpenCV.h */,
+				17A217A81EE3E73B00F5C744 /* UIImage+OpenCV.mm */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		17EBFBBB1EC9FD1900CEB597 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +142,10 @@
 				17A217951EE3AD2700F5C744 /* WMContour.mm */,
 				17A217971EE3B02D00F5C744 /* WMFiducial.h */,
 				17A217981EE3B02D00F5C744 /* WMFiducial.mm */,
+				17A217A01EE3E3EF00F5C744 /* WMFiducialClassifier.h */,
+				17A217A11EE3E3EF00F5C744 /* WMFiducialClassifier.mm */,
+				17A217AD1EE484B600F5C744 /* WMHOGDescriptor.h */,
+				17A217AE1EE484B600F5C744 /* WMHOGDescriptor.mm */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +294,10 @@
 				1787355F1EC03A7600288C52 /* WMPlayScreenViewController.mm in Sources */,
 				17A217961EE3AD2700F5C744 /* WMContour.mm in Sources */,
 				178735481EC03A2400288C52 /* AppDelegate.m in Sources */,
+				17A217A21EE3E3EF00F5C744 /* WMFiducialClassifier.mm in Sources */,
+				17A217AF1EE484B600F5C744 /* WMHOGDescriptor.mm in Sources */,
+				17A217AC1EE475EF00F5C744 /* WMTestViewController.mm in Sources */,
+				17A217A91EE3E73B00F5C744 /* UIImage+OpenCV.mm in Sources */,
 				17A217991EE3B02D00F5C744 /* WMFiducial.mm in Sources */,
 				178735451EC03A2400288C52 /* main.m in Sources */,
 			);
@@ -280,8 +312,8 @@
 				1787354D1EC03A2400288C52 /* Base */,
 			);
 			name = Main.storyboard;
-			path = ..;
-			sourceTree = "<group>";
+			path = "Whack-AR-Mole";
+			sourceTree = SOURCE_ROOT;
 		};
 		178735511EC03A2400288C52 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -289,8 +321,8 @@
 				178735521EC03A2400288C52 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			path = ..;
-			sourceTree = "<group>";
+			path = "Whack-AR-Mole";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXVariantGroup section */
 

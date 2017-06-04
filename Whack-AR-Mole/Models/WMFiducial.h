@@ -17,9 +17,10 @@ using namespace cv;
 @interface WMFiducial : NSObject
 
 // Designated initializer
-- (instancetype)initWithSquare:(WMContour *)square;
-@property (nonatomic, strong) WMContour *square;
+- (instancetype)initWithSquare:(WMContour *)square inImage:(Mat &)image;
+@property (nonatomic, strong, readonly) WMContour *square;
+@property (nonatomic, assign, readonly) Mat &image;
 
-- (Mat)rectifyFromImage:(Mat &)image;
+@property (nonatomic, assign, readonly) Mat rectifiedImage;
 
 @end
