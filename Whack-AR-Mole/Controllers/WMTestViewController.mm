@@ -13,7 +13,6 @@
 #import <opencv2/objdetect.hpp>
 #import "UIImage+OpenCV.h"
 #import "WMFiducialClassifier.h"
-#import "WMHOGDescriptor.h"
 #import <iostream>
 using namespace std;
 using namespace cv;

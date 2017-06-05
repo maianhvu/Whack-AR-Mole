@@ -45,7 +45,6 @@ static cv::Size const FIDUCIAL_SIZE = cv::Size(64, 64);
 - (Mat)rectifiedImage {
     if (!_rectifiedImageCalculated) {
         @synchronized (self) {
-            _rectifiedImageCalculated = YES;
             Mat angles(_square.vertexCount, 1, CV_64F);
             for (int vertex = 0; vertex < _square.vertexCount; ++vertex) {
                 Mat vector = _square.centroid - _square.approx.row(vertex);
@@ -97,6 +96,7 @@ static cv::Size const FIDUCIAL_SIZE = cv::Size(64, 64);
                     break;
                 default: _rectifiedImage = warped; break;
             }
+            _rectifiedImageCalculated = YES;
         }
     }
     return _rectifiedImage;

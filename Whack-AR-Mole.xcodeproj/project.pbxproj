@@ -18,7 +18,6 @@
 		17A217A21EE3E3EF00F5C744 /* WMFiducialClassifier.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217A11EE3E3EF00F5C744 /* WMFiducialClassifier.mm */; };
 		17A217A91EE3E73B00F5C744 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217A81EE3E73B00F5C744 /* UIImage+OpenCV.mm */; };
 		17A217AC1EE475EF00F5C744 /* WMTestViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217AB1EE475EF00F5C744 /* WMTestViewController.mm */; };
-		17A217AF1EE484B600F5C744 /* WMHOGDescriptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217AE1EE484B600F5C744 /* WMHOGDescriptor.mm */; };
 		17A217B41EE4E8F200F5C744 /* fiducials.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 17A217B31EE4E8F200F5C744 /* fiducials.bmp */; };
 		AB8587682B98FC68EE15ABA1 /* libPods-Whack-AR-Mole.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45E93EF54CDDB027335D6FC /* libPods-Whack-AR-Mole.a */; };
 /* End PBXBuildFile section */
@@ -45,8 +44,6 @@
 		17A217A81EE3E73B00F5C744 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		17A217AA1EE475EF00F5C744 /* WMTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTestViewController.h; sourceTree = "<group>"; };
 		17A217AB1EE475EF00F5C744 /* WMTestViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMTestViewController.mm; sourceTree = "<group>"; };
-		17A217AD1EE484B600F5C744 /* WMHOGDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHOGDescriptor.h; sourceTree = "<group>"; };
-		17A217AE1EE484B600F5C744 /* WMHOGDescriptor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMHOGDescriptor.mm; sourceTree = "<group>"; };
 		17A217B31EE4E8F200F5C744 /* fiducials.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = fiducials.bmp; sourceTree = "<group>"; };
 		952FC17739EDBC1A019A4575 /* Pods-Whack-AR-Mole.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whack-AR-Mole.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Whack-AR-Mole/Pods-Whack-AR-Mole.debug.xcconfig"; sourceTree = "<group>"; };
 		F45E93EF54CDDB027335D6FC /* libPods-Whack-AR-Mole.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Whack-AR-Mole.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,8 +152,6 @@
 				17A217981EE3B02D00F5C744 /* WMFiducial.mm */,
 				17A217A01EE3E3EF00F5C744 /* WMFiducialClassifier.h */,
 				17A217A11EE3E3EF00F5C744 /* WMFiducialClassifier.mm */,
-				17A217AD1EE484B600F5C744 /* WMHOGDescriptor.h */,
-				17A217AE1EE484B600F5C744 /* WMHOGDescriptor.mm */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -307,7 +302,6 @@
 				17A217961EE3AD2700F5C744 /* WMContour.mm in Sources */,
 				178735481EC03A2400288C52 /* AppDelegate.m in Sources */,
 				17A217A21EE3E3EF00F5C744 /* WMFiducialClassifier.mm in Sources */,
-				17A217AF1EE484B600F5C744 /* WMHOGDescriptor.mm in Sources */,
 				17A217AC1EE475EF00F5C744 /* WMTestViewController.mm in Sources */,
 				17A217A91EE3E73B00F5C744 /* UIImage+OpenCV.mm in Sources */,
 				17A217991EE3B02D00F5C744 /* WMFiducial.mm in Sources */,
