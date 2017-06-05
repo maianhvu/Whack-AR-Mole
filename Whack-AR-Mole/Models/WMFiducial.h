@@ -14,6 +14,10 @@ using namespace std;
 using namespace cv;
 #endif
 
+typedef NS_ENUM(NSUInteger, WMFiducialOrientation) {
+    
+};
+
 @interface WMFiducial : NSObject
 
 // Designated initializer

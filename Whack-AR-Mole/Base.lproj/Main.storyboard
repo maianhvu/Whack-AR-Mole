@@ -24,18 +24,18 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VQK-cC-nzg">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0yB-HP-lME">
-                                <rect key="frame" x="155" y="603" width="64" height="64"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0yB-HP-lME">
+                                <rect key="frame" x="0.0" y="603" width="375" height="64"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="EL6-hc-Qgc"/>
-                                    <constraint firstAttribute="width" secondItem="0yB-HP-lME" secondAttribute="height" multiplier="1:1" id="ahT-eb-8cR"/>
+                                    <constraint firstAttribute="height" constant="64" id="Uns-BH-7e9"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="VQK-cC-nzg" secondAttribute="trailing" id="6kD-mn-8ha"/>
-                            <constraint firstItem="0yB-HP-lME" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CcH-lf-HIy"/>
+                            <constraint firstItem="0yB-HP-lME" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8M1-ZI-XWj"/>
+                            <constraint firstAttribute="trailing" secondItem="0yB-HP-lME" secondAttribute="trailing" id="PTl-3A-A2B"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0yB-HP-lME" secondAttribute="bottom" id="Uza-eL-Pms"/>
                             <constraint firstItem="0yB-HP-lME" firstAttribute="top" secondItem="VQK-cC-nzg" secondAttribute="bottom" id="Z7H-8X-BjC"/>
                             <constraint firstItem="VQK-cC-nzg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="lgB-qH-E4g"/>

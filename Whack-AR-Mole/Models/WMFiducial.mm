@@ -71,21 +71,29 @@ static cv::Size const FIDUCIAL_SIZE = cv::Size(64, 64);
             Mat warped;
             warpPerspective(_image, warped, M, FIDUCIAL_SIZE);
 
-            Moments mmts = moments(warped);
-            double x = mmts.m10 / mmts.m00;
-            double y = mmts.m01 / mmts.m00;
-            float angle = fastAtan2(FIDUCIAL_SIZE.height - 1 - y * 2,
-                                    FIDUCIAL_SIZE.width - 1 - x * 2);
-            int quadrant = (int) floor(fmod(angle + 45, 360) / 90);
-            switch (quadrant) {
-                case 0: flip(warped, _rectifiedImage, -1); break;
-                case 1:
+            int edgeSize = (int) ceil((45.0/140)*FIDUCIAL_SIZE.width);
+            Mat leftEdge   = warped.colRange(0, edgeSize);
+            Mat rightEdge  = warped.colRange(warped.cols - edgeSize, warped.cols);
+            Mat topEdge    = warped.rowRange(0, edgeSize);
+            Mat bottomEdge = warped.rowRange(warped.rows - edgeSize, warped.rows);
+            double means[4] = {
+                mean(leftEdge  )[0],
+                mean(rightEdge )[0],
+                mean(topEdge   )[0],
+                mean(bottomEdge)[0],
+            };
+            Mat meansMat(1, 4, CV_64F, means);
+            int minIdx[2];
+            minMaxIdx(meansMat, NULL, NULL, minIdx, NULL);
+            switch (minIdx[1]) {
+                case 1: flip(warped, _rectifiedImage, -1); break;
+                case 2:
                     transpose(warped, warped);
-                    flip(warped, _rectifiedImage, 1);
+                    flip(warped, _rectifiedImage, 0);
                     break;
                 case 3:
                     transpose(warped, warped);
-                    flip(warped, _rectifiedImage, 0);
+                    flip(warped, _rectifiedImage, 1);
                     break;
                 default: _rectifiedImage = warped; break;
             }

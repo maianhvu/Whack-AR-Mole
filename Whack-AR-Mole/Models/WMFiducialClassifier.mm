@@ -11,6 +11,7 @@
 #import <iostream>
 #import <opencv2/imgproc.hpp>
 #import <opencv2/objdetect.hpp>
+#import <opencv2/highgui.hpp>
 #import "UIImage+OpenCV.h"
 #endif
 
@@ -63,18 +64,21 @@
                                        cv::Size(8, 8),
                                        cv::Size(8, 8),
                                        9);
-    UIImage *fiducialsImage = [UIImage imageNamed:@"fiducials"];
-    Mat fiducials;
-    cvtColor(fiducialsImage.cvMatRepresentation, fiducials, CV_RGBA2GRAY);
+    
+    NSString *pathToFiducials = [[NSBundle mainBundle] pathForResource:@"fiducials" ofType:@"bmp"];
+    string pathString = [pathToFiducials cStringUsingEncoding:NSMacOSRomanStringEncoding];
+    Mat fiducials = imread(pathString, 0);
+    Mat thresh;
+    threshold(fiducials, thresh, 150, 255, THRESH_BINARY);
 
     int fiducialSize  = fiducials.size[1];
     int fiducialCount = fiducials.size[0] / fiducialSize;
     for (int index = 0; index < fiducialCount; index++) {
-        Mat fiducial = fiducials.rowRange(index * fiducialSize, (index + 1) * fiducialSize);
+        Mat pixelValues = thresh.rowRange(index * fiducialSize, (index + 1) * fiducialSize);
         vector<float> descriptorValues;
-        self.hogDescriptor.compute(fiducial, descriptorValues);
-        Mat features = Mat(descriptorValues, CV_32F).t();
-
+        self.hogDescriptor.compute(pixelValues, descriptorValues);
+        Mat features = Mat(descriptorValues, CV_32F).reshape(1, 1);
+        
         if (index == 0) {
             self.features = Mat(fiducialCount, features.cols, CV_32F);
         }
@@ -92,9 +96,11 @@
     }
 
     Mat rectified = fiducial.rectifiedImage;
+    Mat thresh;
+    threshold(rectified, thresh, 150, 255, THRESH_BINARY);
     vector<float> descriptorValues;
-    self.hogDescriptor.compute(rectified, descriptorValues);
-    Mat features = Mat(descriptorValues, CV_32F).t();
+    self.hogDescriptor.compute(thresh, descriptorValues);
+    Mat features = Mat(descriptorValues, CV_32F).reshape(1, 1);
 
     NSUInteger minIndex = NSNotFound;
     double minDist = DBL_MAX;

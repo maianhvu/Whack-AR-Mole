@@ -73,15 +73,16 @@ using namespace std;
                  Scalar(0, 255, 255),
                  2);
 
+    Mat allFiducials;
     for (WMContour *square in squares) {
         WMFiducial *fiducial = [[WMFiducial alloc] initWithSquare:square inImage:gray];
-        if (square == squares.firstObject) {
-            Mat fiducialMat;
-            cvtColor(fiducial.rectifiedImage, fiducialMat, CV_GRAY2RGBA);
-            UIImage *fiducialImage = [UIImage imageFromCvMat:fiducialMat];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.miniImageView.image = fiducialImage;
-            });
+
+        Mat fiducialMat;
+        cvtColor(fiducial.rectifiedImage, fiducialMat, CV_GRAY2RGBA);
+        if (allFiducials.empty()) {
+            allFiducials = fiducialMat;
+        } else {
+            hconcat(allFiducials, fiducialMat, allFiducials);
         }
 
         NSUInteger index = [[WMFiducialClassifier sharedClassifier] classifyFiducial:fiducial];
@@ -95,6 +96,13 @@ using namespace std;
                     CV_FONT_HERSHEY_SIMPLEX, 1, Scalar(0, 255, 25));
 
         }
+    }
+
+    if (!allFiducials.empty()) {
+        UIImage *fiducialImage = [UIImage imageFromCvMat:allFiducials];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.miniImageView.image = fiducialImage;
+        });
     }
 }
 

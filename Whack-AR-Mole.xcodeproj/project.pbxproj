@@ -19,6 +19,7 @@
 		17A217A91EE3E73B00F5C744 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217A81EE3E73B00F5C744 /* UIImage+OpenCV.mm */; };
 		17A217AC1EE475EF00F5C744 /* WMTestViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217AB1EE475EF00F5C744 /* WMTestViewController.mm */; };
 		17A217AF1EE484B600F5C744 /* WMHOGDescriptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217AE1EE484B600F5C744 /* WMHOGDescriptor.mm */; };
+		17A217B41EE4E8F200F5C744 /* fiducials.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 17A217B31EE4E8F200F5C744 /* fiducials.bmp */; };
 		AB8587682B98FC68EE15ABA1 /* libPods-Whack-AR-Mole.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45E93EF54CDDB027335D6FC /* libPods-Whack-AR-Mole.a */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		17A217AB1EE475EF00F5C744 /* WMTestViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMTestViewController.mm; sourceTree = "<group>"; };
 		17A217AD1EE484B600F5C744 /* WMHOGDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHOGDescriptor.h; sourceTree = "<group>"; };
 		17A217AE1EE484B600F5C744 /* WMHOGDescriptor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMHOGDescriptor.mm; sourceTree = "<group>"; };
+		17A217B31EE4E8F200F5C744 /* fiducials.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = fiducials.bmp; sourceTree = "<group>"; };
 		952FC17739EDBC1A019A4575 /* Pods-Whack-AR-Mole.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whack-AR-Mole.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Whack-AR-Mole/Pods-Whack-AR-Mole.debug.xcconfig"; sourceTree = "<group>"; };
 		F45E93EF54CDDB027335D6FC /* libPods-Whack-AR-Mole.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Whack-AR-Mole.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9718879F67BA8287DC6895F /* Pods-Whack-AR-Mole.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whack-AR-Mole.release.xcconfig"; path = "Pods/Target Support Files/Pods-Whack-AR-Mole/Pods-Whack-AR-Mole.release.xcconfig"; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 		178735421EC03A2400288C52 /* Whack-AR-Mole */ = {
 			isa = PBXGroup;
 			children = (
+				17A217B01EE4E78600F5C744 /* Assets */,
 				17A217A61EE3E71800F5C744 /* Extensions */,
 				17EBFBBB1EC9FD1900CEB597 /* Models */,
 				1787355C1EC03A4000288C52 /* Views */,
@@ -133,6 +136,14 @@
 				17A217A81EE3E73B00F5C744 /* UIImage+OpenCV.mm */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		17A217B01EE4E78600F5C744 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				17A217B31EE4E8F200F5C744 /* fiducials.bmp */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		17EBFBBB1EC9FD1900CEB597 /* Models */ = {
@@ -232,6 +243,7 @@
 			files = (
 				178735531EC03A2400288C52 /* LaunchScreen.storyboard in Resources */,
 				178735501EC03A2400288C52 /* Assets.xcassets in Resources */,
+				17A217B41EE4E8F200F5C744 /* fiducials.bmp in Resources */,
 				1787354E1EC03A2400288C52 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
