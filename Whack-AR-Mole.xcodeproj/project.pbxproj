@@ -21,6 +21,7 @@
 		17A217B41EE4E8F200F5C744 /* fiducials.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 17A217B31EE4E8F200F5C744 /* fiducials.bmp */; };
 		17A217B71EE5053000F5C744 /* WMIdentifiedFiducial.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217B61EE5053000F5C744 /* WMIdentifiedFiducial.mm */; };
 		17A217BA1EE51FD800F5C744 /* WMCalibrator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217B91EE51FD800F5C744 /* WMCalibrator.mm */; };
+		17A217BD1EE52D7600F5C744 /* WMHole.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217BC1EE52D7600F5C744 /* WMHole.mm */; };
 		AB8587682B98FC68EE15ABA1 /* libPods-Whack-AR-Mole.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45E93EF54CDDB027335D6FC /* libPods-Whack-AR-Mole.a */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,8 @@
 		17A217B61EE5053000F5C744 /* WMIdentifiedFiducial.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMIdentifiedFiducial.mm; sourceTree = "<group>"; };
 		17A217B81EE51FD800F5C744 /* WMCalibrator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCalibrator.h; sourceTree = "<group>"; };
 		17A217B91EE51FD800F5C744 /* WMCalibrator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMCalibrator.mm; sourceTree = "<group>"; };
+		17A217BB1EE52D7600F5C744 /* WMHole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHole.h; sourceTree = "<group>"; };
+		17A217BC1EE52D7600F5C744 /* WMHole.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMHole.mm; sourceTree = "<group>"; };
 		952FC17739EDBC1A019A4575 /* Pods-Whack-AR-Mole.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whack-AR-Mole.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Whack-AR-Mole/Pods-Whack-AR-Mole.debug.xcconfig"; sourceTree = "<group>"; };
 		F45E93EF54CDDB027335D6FC /* libPods-Whack-AR-Mole.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Whack-AR-Mole.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9718879F67BA8287DC6895F /* Pods-Whack-AR-Mole.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whack-AR-Mole.release.xcconfig"; path = "Pods/Target Support Files/Pods-Whack-AR-Mole/Pods-Whack-AR-Mole.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 				17A217B61EE5053000F5C744 /* WMIdentifiedFiducial.mm */,
 				17A217B81EE51FD800F5C744 /* WMCalibrator.h */,
 				17A217B91EE51FD800F5C744 /* WMCalibrator.mm */,
+				17A217BB1EE52D7600F5C744 /* WMHole.h */,
+				17A217BC1EE52D7600F5C744 /* WMHole.mm */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -312,6 +317,7 @@
 				17A217BA1EE51FD800F5C744 /* WMCalibrator.mm in Sources */,
 				1787355F1EC03A7600288C52 /* WMPlayScreenViewController.mm in Sources */,
 				17A217961EE3AD2700F5C744 /* WMContour.mm in Sources */,
+				17A217BD1EE52D7600F5C744 /* WMHole.mm in Sources */,
 				178735481EC03A2400288C52 /* AppDelegate.m in Sources */,
 				17A217A21EE3E3EF00F5C744 /* WMFiducialClassifier.mm in Sources */,
 				17A217AC1EE475EF00F5C744 /* WMTestViewController.mm in Sources */,

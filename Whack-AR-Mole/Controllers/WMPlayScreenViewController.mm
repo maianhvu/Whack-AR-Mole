@@ -11,6 +11,7 @@
 #import <iostream>
 #import "WMFiducialClassifier.h"
 #import "WMCalibrator.h"
+#import "WMHole.h"
 #import "UIImage+OpenCV.h"
 #import <opencv2/highgui/cap_ios.h>
 #import <opencv2/imgproc/imgproc.hpp>
@@ -29,6 +30,7 @@ using namespace std;
 
 // Properties
 @property (nonatomic, strong) CvVideoCamera *camera;
+@property (nonatomic, strong) NSArray<WMHole *> *holes;
 
 @end
 
@@ -43,6 +45,11 @@ using namespace std;
     // Do any additional setup after loading the view.
     [WMFiducialClassifier sharedClassifier];
 
+    NSMutableArray<WMHole *> *holes = [NSMutableArray arrayWithCapacity:6];
+    for (NSUInteger index = 0; index < 6; ++index) {
+        [holes addObject:[[WMHole alloc] initWithIndex:index]];
+    }
+    self.holes = holes;
 
     self.camera = [[CvVideoCamera alloc] initWithParentView:self.imageView];
     self.camera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
@@ -114,7 +121,11 @@ using namespace std;
         double origin[4] = { 0, 0, 0, 1 };
         Mat originMat(4, 1, CV_64F, origin);
         cv::Point originPoint = [calibrator projectRealWorldPoint:originMat];
-        circle(image, originPoint, 3, Scalar(0, 0, 255), -1);
+        circle(image, originPoint, 3, Scalar(255, 0, 0, 255), -1);
+
+        for (WMHole *hole in self.holes) {
+            [hole drawInImage:image usingCalibrationMatrix:calibrator.cameraMatrix];
+        }
     }
 
     if (!allFiducials.empty()) {
