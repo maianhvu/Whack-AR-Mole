@@ -42,9 +42,9 @@ static cv::Size const FIDUCIAL_SIZE = cv::Size(64, 64);
     return self;
 }
 
-- (Mat)rectifiedImage {
-    if (!_rectifiedImageCalculated) {
-        @synchronized (self) {
+- (void)rectify {
+    @synchronized (self) {
+        if (!_rectifiedImageCalculated) {
             Mat angles(_square.vertexCount, 1, CV_64F);
             for (int vertex = 0; vertex < _square.vertexCount; ++vertex) {
                 Mat vector = _square.centroid - _square.approx.row(vertex);
@@ -65,11 +65,11 @@ static cv::Size const FIDUCIAL_SIZE = cv::Size(64, 64);
                 (float) FIDUCIAL_SIZE.width - 1, (float) FIDUCIAL_SIZE.height - 1,
                 0, (float) FIDUCIAL_SIZE.height - 1};
             Mat targetVertices(4, 2, CV_32F, target);
-
+            
             Mat M = getPerspectiveTransform(sortedVertices, targetVertices);
             Mat warped;
             warpPerspective(_image, warped, M, FIDUCIAL_SIZE);
-
+            
             int edgeSize = (int) ceil((45.0/140)*FIDUCIAL_SIZE.width);
             Mat leftEdge   = warped.colRange(0, edgeSize);
             Mat rightEdge  = warped.colRange(warped.cols - edgeSize, warped.cols);
@@ -84,7 +84,7 @@ static cv::Size const FIDUCIAL_SIZE = cv::Size(64, 64);
             Mat meansMat(1, 4, CV_64F, means);
             int minIdx[2];
             int vertexOffset = 0;
-
+            
             minMaxIdx(meansMat, NULL, NULL, minIdx, NULL);
             switch (minIdx[1]) {
                 case 1:
@@ -105,17 +105,16 @@ static cv::Size const FIDUCIAL_SIZE = cv::Size(64, 64);
                     _rectifiedImage = warped;
                     break;
             }
-
+            
             _uprightVertices = Mat(sortedVertices.rows, sortedVertices.cols, CV_64F);
             for (int row = 0; row < _uprightVertices.rows; ++row) {
                 sortedVertices.row((row + vertexOffset) % sortedVertices.rows)
-                    .convertTo(_uprightVertices.row(row), CV_64F);
+                .convertTo(_uprightVertices.row(row), CV_64F);
             }
             
             _rectifiedImageCalculated = YES;
         }
     }
-    return _rectifiedImage;
 }
 
 - (void)drawVerticesInImage:(Mat &)image {
@@ -130,7 +129,7 @@ static cv::Size const FIDUCIAL_SIZE = cv::Size(64, 64);
         circle(image, vertex, 3, Scalar(0, 0, 255), -1);
         string vertexId = std::to_string(row);
         cv::Point org((int) round(rowValues[0]),
-                         (int) round(rowValues[1] - 10));
+                      (int) round(rowValues[1] - 10));
         putText(image, vertexId, org, CV_FONT_HERSHEY_SIMPLEX, 0.75, Scalar(0, 0, 255));
     }
 }

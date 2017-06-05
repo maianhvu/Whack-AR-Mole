@@ -10,6 +10,7 @@
 #ifdef __cplusplus
 #import <iostream>
 #import "WMFiducialClassifier.h"
+#import "WMCalibrator.h"
 #import "UIImage+OpenCV.h"
 #import <opencv2/highgui/cap_ios.h>
 #import <opencv2/imgproc/imgproc.hpp>
@@ -74,8 +75,10 @@ using namespace std;
                  2);
 
     Mat allFiducials;
+    NSMutableArray<WMIdentifiedFiducial *> *fiducials = [NSMutableArray array];
     for (WMContour *square in squares) {
         WMFiducial *fiducial = [[WMFiducial alloc] initWithSquare:square inImage:gray];
+        [fiducial rectify];
 
         Mat fiducialMat;
         cvtColor(fiducial.rectifiedImage, fiducialMat, CV_GRAY2RGBA);
@@ -96,8 +99,22 @@ using namespace std;
                     CV_FONT_HERSHEY_SIMPLEX, 1, Scalar(0, 255, 25));
 
         }
-        
+
         [fiducial drawVerticesInImage:image];
+
+        if (index < 2) {
+            WMIdentifiedFiducial *identified = [[WMIdentifiedFiducial alloc] initWithFiducial:fiducial
+                                                                                   identifier:index];
+            [fiducials addObject:identified];
+        }
+    }
+
+    if (fiducials.count >= 2) {
+        WMCalibrator *calibrator = [[WMCalibrator alloc] initWithIdentifiedFiducials:fiducials];
+        double origin[4] = { 0, 0, 0, 1 };
+        Mat originMat(4, 1, CV_64F, origin);
+        cv::Point originPoint = [calibrator projectRealWorldPoint:originMat];
+        circle(image, originPoint, 3, Scalar(0, 0, 255), -1);
     }
 
     if (!allFiducials.empty()) {

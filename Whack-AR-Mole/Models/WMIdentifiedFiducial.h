@@ -16,6 +16,6 @@
 @property (nonatomic, strong, readonly) WMFiducial *fiducial;
 @property (nonatomic, assign, readonly) NSUInteger identifier;
 
-@property (nonatomic, assign, readonly) Mat P;
+- (void)generateMatrixP:(OutputArray)outP;
 
 @end

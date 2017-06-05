@@ -21,6 +21,8 @@ using namespace cv;
 @property (nonatomic, strong, readonly) WMContour *square;
 @property (nonatomic, assign, readonly) Mat &image;
 
+- (void)rectify;
+
 @property (nonatomic, assign, readonly) Mat rectifiedImage;
 @property (nonatomic, assign, readonly) Mat uprightVertices;
 
