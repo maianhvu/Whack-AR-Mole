@@ -109,11 +109,9 @@ using namespace std;
 
         [fiducial drawVerticesInImage:image];
 
-        if (index < 2) {
-            WMIdentifiedFiducial *identified = [[WMIdentifiedFiducial alloc] initWithFiducial:fiducial
-                                                                                   identifier:index];
-            [fiducials addObject:identified];
-        }
+        WMIdentifiedFiducial *identified = [[WMIdentifiedFiducial alloc] initWithFiducial:fiducial
+                                                                               identifier:index];
+        [fiducials addObject:identified];
     }
 
     if (fiducials.count >= 2) {
