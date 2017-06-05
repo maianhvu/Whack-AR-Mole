@@ -23,6 +23,11 @@
 @synthesize rectifiedImage = _rectifiedImage;
 
 //-----------------------------------------------------------------------------
+#pragma mark - Constants
+//-----------------------------------------------------------------------------
+static cv::Size const FIDUCIAL_SIZE = cv::Size(64, 64);
+
+//-----------------------------------------------------------------------------
 #pragma mark - Initialization
 //-----------------------------------------------------------------------------
 - (instancetype)initWithSquare:(WMContour *)square inImage:(Mat &)image {
@@ -56,17 +61,34 @@
                 _square.approx.row(index).convertTo(sortedVertices.row(indexes.at<int>(index)), CV_32F);
             }
             
-            cv::Size fiducialSize = cv::Size(32, 32);
             float target[8] = {0, 0,
-                (float) fiducialSize.width - 1, 0,
-                (float) fiducialSize.width - 1, (float) fiducialSize.height - 1,
-                0, (float) fiducialSize.height - 1};
+                (float) FIDUCIAL_SIZE.width - 1, 0,
+                (float) FIDUCIAL_SIZE.width - 1, (float) FIDUCIAL_SIZE.height - 1,
+                0, (float) FIDUCIAL_SIZE.height - 1};
             Mat targetVertices(4, 2, CV_32F, target);
 
             Mat M = getPerspectiveTransform(sortedVertices, targetVertices);
             Mat warped;
-            warpPerspective(_image, warped, M, fiducialSize);
-            flip(warped, _rectifiedImage, -1);
+            warpPerspective(_image, warped, M, FIDUCIAL_SIZE);
+
+            Moments mmts = moments(warped);
+            double x = mmts.m10 / mmts.m00;
+            double y = mmts.m01 / mmts.m00;
+            float angle = fastAtan2(FIDUCIAL_SIZE.height - 1 - y * 2,
+                                    FIDUCIAL_SIZE.width - 1 - x * 2);
+            int quadrant = (int) floor(fmod(angle + 45, 360) / 90);
+            switch (quadrant) {
+                case 0: flip(warped, _rectifiedImage, -1); break;
+                case 1:
+                    transpose(warped, warped);
+                    flip(warped, _rectifiedImage, 1);
+                    break;
+                case 3:
+                    transpose(warped, warped);
+                    flip(warped, _rectifiedImage, 0);
+                    break;
+                default: _rectifiedImage = warped; break;
+            }
         }
     }
     return _rectifiedImage;

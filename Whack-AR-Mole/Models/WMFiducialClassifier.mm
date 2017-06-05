@@ -9,15 +9,15 @@
 #import "WMFiducialClassifier.h"
 #ifdef __cplusplus
 #import <iostream>
-#import "WMHOGDescriptor.h"
-#import <opencv2/imgproc/imgproc.hpp>
+#import <opencv2/imgproc.hpp>
+#import <opencv2/objdetect.hpp>
 #import "UIImage+OpenCV.h"
 #endif
 
 @interface WMFiducialClassifier ()
 
 @property (atomic, assign) BOOL finishedPreparing;
-@property (nonatomic, strong) WMHOGDescriptor *hogDescriptor;
+@property (nonatomic, assign) HOGDescriptor hogDescriptor;
 @property (nonatomic, assign) Mat features;
 
 @end
@@ -58,9 +58,11 @@
 }
 
 - (void)prepareTemplateImages {
-    self.hogDescriptor = [[WMHOGDescriptor alloc] initWithPixelsPerCell:cv::Size(8, 8)
-                                                          cellsPerBlock:cv::Size(2, 2)
-                                                                  nBins:9];
+    self.hogDescriptor = HOGDescriptor(cv::Size(64, 64),
+                                       cv::Size(16, 16),
+                                       cv::Size(8, 8),
+                                       cv::Size(8, 8),
+                                       9);
     UIImage *fiducialsImage = [UIImage imageNamed:@"fiducials"];
     Mat fiducials;
     cvtColor(fiducialsImage.cvMatRepresentation, fiducials, CV_RGBA2GRAY);
@@ -69,7 +71,9 @@
     int fiducialCount = fiducials.size[0] / fiducialSize;
     for (int index = 0; index < fiducialCount; index++) {
         Mat fiducial = fiducials.rowRange(index * fiducialSize, (index + 1) * fiducialSize);
-        Mat features = [self.hogDescriptor computeHOGFeaturesInImage:fiducial];
+        vector<float> descriptorValues;
+        self.hogDescriptor.compute(fiducial, descriptorValues);
+        Mat features = Mat(descriptorValues, CV_32F).t();
 
         if (index == 0) {
             self.features = Mat(fiducialCount, features.cols, CV_32F);
@@ -88,7 +92,9 @@
     }
 
     Mat rectified = fiducial.rectifiedImage;
-    Mat features = [self.hogDescriptor computeHOGFeaturesInImage:rectified];
+    vector<float> descriptorValues;
+    self.hogDescriptor.compute(rectified, descriptorValues);
+    Mat features = Mat(descriptorValues, CV_32F).t();
 
     NSUInteger minIndex = NSNotFound;
     double minDist = DBL_MAX;
