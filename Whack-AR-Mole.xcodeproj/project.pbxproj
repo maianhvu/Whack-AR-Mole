@@ -123,8 +123,9 @@
 				1787354F1EC03A2400288C52 /* Assets.xcassets */,
 				178735511EC03A2400288C52 /* LaunchScreen.storyboard */,
 			);
-			path = Views;
-			sourceTree = "<group>";
+			name = Views;
+			path = "Whack-AR-Mole/Views";
+			sourceTree = SOURCE_ROOT;
 		};
 		17A217A61EE3E71800F5C744 /* Extensions */ = {
 			isa = PBXGroup;
