@@ -97,7 +97,7 @@
 
     Mat rectified = fiducial.rectifiedImage;
     Mat thresh;
-    threshold(rectified, thresh, 150, 255, THRESH_BINARY);
+    threshold(rectified, thresh, 100, 255, THRESH_BINARY);
     vector<float> descriptorValues;
     self.hogDescriptor.compute(thresh, descriptorValues);
     Mat features = Mat(descriptorValues, CV_32F).reshape(1, 1);

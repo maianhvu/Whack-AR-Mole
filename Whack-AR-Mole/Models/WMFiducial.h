@@ -14,10 +14,6 @@ using namespace std;
 using namespace cv;
 #endif
 
-typedef NS_ENUM(NSUInteger, WMFiducialOrientation) {
-    
-};
-
 @interface WMFiducial : NSObject
 
 // Designated initializer
@@ -26,5 +22,9 @@ typedef NS_ENUM(NSUInteger, WMFiducialOrientation) {
 @property (nonatomic, assign, readonly) Mat &image;
 
 @property (nonatomic, assign, readonly) Mat rectifiedImage;
+@property (nonatomic, assign, readonly) Mat uprightVertices;
+
+// Debugging
+- (void)drawVerticesInImage:(Mat &)image;
 
 @end

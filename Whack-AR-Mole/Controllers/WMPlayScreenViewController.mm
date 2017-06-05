@@ -96,6 +96,8 @@ using namespace std;
                     CV_FONT_HERSHEY_SIMPLEX, 1, Scalar(0, 255, 25));
 
         }
+        
+        [fiducial drawVerticesInImage:image];
     }
 
     if (!allFiducials.empty()) {

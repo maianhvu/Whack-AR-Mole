@@ -83,23 +83,56 @@ static cv::Size const FIDUCIAL_SIZE = cv::Size(64, 64);
             };
             Mat meansMat(1, 4, CV_64F, means);
             int minIdx[2];
+            int vertexOffset = 0;
+
             minMaxIdx(meansMat, NULL, NULL, minIdx, NULL);
             switch (minIdx[1]) {
-                case 1: flip(warped, _rectifiedImage, -1); break;
+                case 1:
+                    flip(warped, _rectifiedImage, -1);
+                    vertexOffset = 2;
+                    break; 
                 case 2:
                     transpose(warped, warped);
                     flip(warped, _rectifiedImage, 0);
+                    vertexOffset = 1;
                     break;
                 case 3:
                     transpose(warped, warped);
                     flip(warped, _rectifiedImage, 1);
+                    vertexOffset = 3;
                     break;
-                default: _rectifiedImage = warped; break;
+                default:
+                    _rectifiedImage = warped;
+                    break;
             }
+
+            _uprightVertices = Mat(sortedVertices.rows, sortedVertices.cols, CV_64F);
+            for (int row = 0; row < _uprightVertices.rows; ++row) {
+                sortedVertices.row((row + vertexOffset) % sortedVertices.rows)
+                    .convertTo(_uprightVertices.row(row), CV_64F);
+            }
+            
             _rectifiedImageCalculated = YES;
         }
     }
     return _rectifiedImage;
+}
+
+- (void)drawVerticesInImage:(Mat &)image {
+    if (self.uprightVertices.empty()) {
+        return;
+    }
+
+    for (int row = 0; row < self.uprightVertices.rows; ++row) {
+        double *rowValues = self.uprightVertices.ptr<double>(row);
+        cv::Point vertex((int) round(rowValues[0]),
+                         (int) round(rowValues[1]));
+        circle(image, vertex, 3, Scalar(0, 0, 255), -1);
+        string vertexId = std::to_string(row);
+        cv::Point org((int) round(rowValues[0]),
+                         (int) round(rowValues[1] - 10));
+        putText(image, vertexId, org, CV_FONT_HERSHEY_SIMPLEX, 0.75, Scalar(0, 0, 255));
+    }
 }
 
 @end
