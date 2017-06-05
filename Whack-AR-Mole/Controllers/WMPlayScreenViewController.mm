@@ -25,8 +25,6 @@ using namespace std;
 
 // Outlets
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
-@property (nonatomic, weak) IBOutlet UIImageView *miniImageView;
-
 
 // Properties
 @property (nonatomic, strong) CvVideoCamera *camera;
@@ -75,40 +73,12 @@ using namespace std;
     Mat gray;
     cvtColor(image, gray, CV_BGR2GRAY);
     NSArray<WMContour *> *squares = [WMContour findSquaresInImage:gray];
-    drawContours(image,
-                 [WMContour extractCvContoursFromContours:squares],
-                  -1,
-                 Scalar(0, 255, 255),
-                 2);
 
-    Mat allFiducials;
     NSMutableArray<WMIdentifiedFiducial *> *fiducials = [NSMutableArray array];
     for (WMContour *square in squares) {
         WMFiducial *fiducial = [[WMFiducial alloc] initWithSquare:square inImage:gray];
         [fiducial rectify];
-
-        Mat fiducialMat;
-        cvtColor(fiducial.rectifiedImage, fiducialMat, CV_GRAY2RGBA);
-        if (allFiducials.empty()) {
-            allFiducials = fiducialMat;
-        } else {
-            hconcat(allFiducials, fiducialMat, allFiducials);
-        }
-
         NSUInteger index = [[WMFiducialClassifier sharedClassifier] classifyFiducial:fiducial];
-        if (index < 8) {
-            NSString *letterString = [@"STANFORD" substringWithRange:NSMakeRange(index, 1)];
-            string letter([letterString cStringUsingEncoding:NSUTF8StringEncoding]);
-            Mat centroid;
-            square.centroid.convertTo(centroid, CV_32S);
-            putText(image, letter, cv::Point2i(centroid.at<int>(0, 0),
-                                               centroid.at<int>(0, 1)),
-                    CV_FONT_HERSHEY_SIMPLEX, 1, Scalar(0, 255, 25));
-
-        }
-
-        [fiducial drawVerticesInImage:image];
-
         WMIdentifiedFiducial *identified = [[WMIdentifiedFiducial alloc] initWithFiducial:fiducial
                                                                                identifier:index];
         [fiducials addObject:identified];
@@ -116,21 +86,9 @@ using namespace std;
 
     if (fiducials.count >= 2) {
         WMCalibrator *calibrator = [[WMCalibrator alloc] initWithIdentifiedFiducials:fiducials];
-        double origin[4] = { 0, 0, 0, 1 };
-        Mat originMat(4, 1, CV_64F, origin);
-        cv::Point originPoint = [calibrator projectRealWorldPoint:originMat];
-        circle(image, originPoint, 3, Scalar(255, 0, 0, 255), -1);
-
         for (WMHole *hole in self.holes) {
             [hole drawInImage:image usingCalibrationMatrix:calibrator.cameraMatrix];
         }
-    }
-
-    if (!allFiducials.empty()) {
-        UIImage *fiducialImage = [UIImage imageFromCvMat:allFiducials];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.miniImageView.image = fiducialImage;
-        });
     }
 }
 
