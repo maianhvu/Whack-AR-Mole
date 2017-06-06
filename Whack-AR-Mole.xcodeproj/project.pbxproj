@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		176D72641EE65D8E0000995A /* WMHandDetector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 176D72631EE65D8E0000995A /* WMHandDetector.mm */; };
 		178735451EC03A2400288C52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 178735441EC03A2400288C52 /* main.m */; };
 		178735481EC03A2400288C52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 178735471EC03A2400288C52 /* AppDelegate.m */; };
 		1787354E1EC03A2400288C52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1787354C1EC03A2400288C52 /* Main.storyboard */; };
@@ -22,10 +23,13 @@
 		17A217B71EE5053000F5C744 /* WMIdentifiedFiducial.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217B61EE5053000F5C744 /* WMIdentifiedFiducial.mm */; };
 		17A217BA1EE51FD800F5C744 /* WMCalibrator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217B91EE51FD800F5C744 /* WMCalibrator.mm */; };
 		17A217BD1EE52D7600F5C744 /* WMHole.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17A217BC1EE52D7600F5C744 /* WMHole.mm */; };
+		17E574A01EE6836800F924DD /* hand.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 17E5749F1EE6836800F924DD /* hand.bmp */; };
 		AB8587682B98FC68EE15ABA1 /* libPods-Whack-AR-Mole.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45E93EF54CDDB027335D6FC /* libPods-Whack-AR-Mole.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		176D72621EE65D8E0000995A /* WMHandDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHandDetector.h; sourceTree = "<group>"; };
+		176D72631EE65D8E0000995A /* WMHandDetector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMHandDetector.mm; sourceTree = "<group>"; };
 		178735401EC03A2400288C52 /* Whack-AR-Mole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Whack-AR-Mole.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		178735441EC03A2400288C52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		178735461EC03A2400288C52 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 		17A217B91EE51FD800F5C744 /* WMCalibrator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMCalibrator.mm; sourceTree = "<group>"; };
 		17A217BB1EE52D7600F5C744 /* WMHole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMHole.h; sourceTree = "<group>"; };
 		17A217BC1EE52D7600F5C744 /* WMHole.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WMHole.mm; sourceTree = "<group>"; };
+		17E5749F1EE6836800F924DD /* hand.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = hand.bmp; sourceTree = "<group>"; };
 		952FC17739EDBC1A019A4575 /* Pods-Whack-AR-Mole.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whack-AR-Mole.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Whack-AR-Mole/Pods-Whack-AR-Mole.debug.xcconfig"; sourceTree = "<group>"; };
 		F45E93EF54CDDB027335D6FC /* libPods-Whack-AR-Mole.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Whack-AR-Mole.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9718879F67BA8287DC6895F /* Pods-Whack-AR-Mole.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whack-AR-Mole.release.xcconfig"; path = "Pods/Target Support Files/Pods-Whack-AR-Mole/Pods-Whack-AR-Mole.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +153,7 @@
 		17A217B01EE4E78600F5C744 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				17E5749F1EE6836800F924DD /* hand.bmp */,
 				17A217B31EE4E8F200F5C744 /* fiducials.bmp */,
 			);
 			path = Assets;
@@ -168,6 +174,8 @@
 				17A217B91EE51FD800F5C744 /* WMCalibrator.mm */,
 				17A217BB1EE52D7600F5C744 /* WMHole.h */,
 				17A217BC1EE52D7600F5C744 /* WMHole.mm */,
+				176D72621EE65D8E0000995A /* WMHandDetector.h */,
+				176D72631EE65D8E0000995A /* WMHandDetector.mm */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,6 +263,7 @@
 				178735531EC03A2400288C52 /* LaunchScreen.storyboard in Resources */,
 				178735501EC03A2400288C52 /* Assets.xcassets in Resources */,
 				17A217B41EE4E8F200F5C744 /* fiducials.bmp in Resources */,
+				17E574A01EE6836800F924DD /* hand.bmp in Resources */,
 				1787354E1EC03A2400288C52 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +327,7 @@
 				1787355F1EC03A7600288C52 /* WMPlayScreenViewController.mm in Sources */,
 				17A217961EE3AD2700F5C744 /* WMContour.mm in Sources */,
 				17A217BD1EE52D7600F5C744 /* WMHole.mm in Sources */,
+				176D72641EE65D8E0000995A /* WMHandDetector.mm in Sources */,
 				178735481EC03A2400288C52 /* AppDelegate.m in Sources */,
 				17A217A21EE3E3EF00F5C744 /* WMFiducialClassifier.mm in Sources */,
 				17A217AC1EE475EF00F5C744 /* WMTestViewController.mm in Sources */,

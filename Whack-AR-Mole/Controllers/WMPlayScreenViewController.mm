@@ -12,6 +12,7 @@
 #import "WMFiducialClassifier.h"
 #import "WMCalibrator.h"
 #import "WMHole.h"
+#import "WMHandDetector.h"
 #import "UIImage+OpenCV.h"
 #import <opencv2/highgui/cap_ios.h>
 #import <opencv2/imgproc/imgproc.hpp>
@@ -86,9 +87,15 @@ using namespace std;
 
     if (fiducials.count >= 2) {
         WMCalibrator *calibrator = [[WMCalibrator alloc] initWithIdentifiedFiducials:fiducials];
-        for (WMHole *hole in self.holes) {
-            [hole drawInImage:image usingCalibrationMatrix:calibrator.cameraMatrix];
-        }
+//        for (WMHole *hole in self.holes) {
+//            [hole drawInImage:image usingCalibrationMatrix:calibrator.cameraMatrix];
+//        }
+
+        // Detect hands
+        Mat thresh;
+        [[WMHandDetector defaultDetector] detectHandInImage:image
+                                      usingCalibratedMatrix:calibrator.cameraMatrix
+                                     toOutputThresholdImage:thresh];
     }
 }
 

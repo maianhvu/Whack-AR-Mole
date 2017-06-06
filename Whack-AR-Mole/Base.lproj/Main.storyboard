@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PoF-rJ-mK7">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -54,31 +53,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gFv-S9-bsG">
-                                <rect key="frame" x="0.0" y="228" width="375" height="211"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="gFv-S9-bsG" secondAttribute="height" multiplier="1280:720" id="WSE-bN-hwb"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mxK-yT-DUQ">
-                                <rect key="frame" x="123" y="471" width="128" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="128" id="7ux-ko-aNL"/>
-                                    <constraint firstAttribute="width" secondItem="mxK-yT-DUQ" secondAttribute="height" multiplier="1:1" id="hLZ-IJ-fRC"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mxK-yT-DUQ" firstAttribute="centerX" secondItem="Tx0-73-bOz" secondAttribute="centerX" id="4on-Tw-Fg1"/>
+                            <constraint firstItem="V8C-kI-UCB" firstAttribute="top" secondItem="gFv-S9-bsG" secondAttribute="bottom" id="6yk-oE-qyJ"/>
                             <constraint firstAttribute="trailing" secondItem="gFv-S9-bsG" secondAttribute="trailing" id="YCa-iM-XC6"/>
-                            <constraint firstItem="gFv-S9-bsG" firstAttribute="centerY" secondItem="Tx0-73-bOz" secondAttribute="centerY" id="ZiQ-Cb-ZZe"/>
-                            <constraint firstItem="mxK-yT-DUQ" firstAttribute="top" secondItem="gFv-S9-bsG" secondAttribute="bottom" constant="32" id="lnn-Hj-ffa"/>
+                            <constraint firstItem="gFv-S9-bsG" firstAttribute="top" secondItem="7sb-1L-5V2" secondAttribute="bottom" id="ulz-91-QmX"/>
                             <constraint firstItem="gFv-S9-bsG" firstAttribute="leading" secondItem="Tx0-73-bOz" secondAttribute="leading" id="vme-tS-2O8"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="gFv-S9-bsG" id="D6I-bm-xhf"/>
-                        <outlet property="squareImageView" destination="mxK-yT-DUQ" id="9xE-Ar-cw5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjx-p8-TqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
