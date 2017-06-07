@@ -18,6 +18,7 @@ using namespace cv;
 - (instancetype)initWithIndex:(NSUInteger)index;
 @property (nonatomic, assign, readonly) NSUInteger index;
 
+- (void)drawInImage:(Mat &)image usingCalibrationMatrix:(const Mat &)calibrationMatrix color:(const Scalar &)color;
 - (void)drawInImage:(Mat &)image usingCalibrationMatrix:(const Mat &)calibrationMatrix;
 
 @end

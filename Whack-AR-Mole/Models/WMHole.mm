@@ -52,14 +52,18 @@ using namespace std;
     return self;
 }
 
-- (void)drawInImage:(cv::Mat &)image usingCalibrationMatrix:(const cv::Mat &)calibrationMatrix {
+- (void)drawInImage:(Mat &)image usingCalibrationMatrix:(const Mat &)calibrationMatrix color:(const Scalar &)color {
     Mat imagePoints = self.worldPoints * calibrationMatrix.t();
     divide(imagePoints.col(0), imagePoints.col(2), imagePoints.col(0));
     divide(imagePoints.col(1), imagePoints.col(2), imagePoints.col(1));
     Mat intPoints;
     imagePoints.colRange(0, 2).convertTo(intPoints, CV_32S);
     RotatedRect rect = fitEllipse(intPoints);
-    ellipse(image, rect, Scalar(0, 0, 0, 255), -1);
+    ellipse(image, rect, color, -1);
+}
+
+- (void)drawInImage:(cv::Mat &)image usingCalibrationMatrix:(const cv::Mat &)calibrationMatrix {
+    [self drawInImage:image usingCalibrationMatrix:calibrationMatrix color:Scalar(0, 0, 0, 255)];
 }
 
 

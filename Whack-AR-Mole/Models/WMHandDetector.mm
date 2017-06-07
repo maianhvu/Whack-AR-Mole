@@ -14,44 +14,6 @@
 using namespace std;
 #endif
 
-// Type Definition
-class ParallelDifferenceThreshold : public ParallelLoopBody {
-public:
-    ParallelDifferenceThreshold(Mat &image, Mat &thresh, const Scalar &values, double difference);
-    virtual void operator ()(const Range &range) const;
-    ParallelDifferenceThreshold &operator=(const ParallelDifferenceThreshold &) {
-        return *this;
-    };
-private:
-    Mat &_image;
-    Mat &_thresh;
-    const Scalar &_values;
-    double _differenceSquared;
-};
-string type2str(int type) {
-    string r;
-
-    uchar depth = type & CV_MAT_DEPTH_MASK;
-    uchar chans = 1 + (type >> CV_CN_SHIFT);
-
-    switch ( depth ) {
-        case CV_8U:  r = "8U"; break;
-        case CV_8S:  r = "8S"; break;
-        case CV_16U: r = "16U"; break;
-        case CV_16S: r = "16S"; break;
-        case CV_32S: r = "32S"; break;
-        case CV_32F: r = "32F"; break;
-        case CV_64F: r = "64F"; break;
-        default:     r = "User"; break;
-    }
-    
-    r += "C";
-    r += (chans+'0');
-    
-    return r;
-}
-
-
 @interface WMHandDetector ()
 
 @property (nonatomic, assign) Mat boardCorners;
@@ -59,6 +21,11 @@ string type2str(int type) {
 @end
 
 @implementation WMHandDetector
+
+//-----------------------------------------------------------------------------
+#pragma mark - Constants
+//-----------------------------------------------------------------------------
+static float const HIT_THRESHOLD = 0.75;
 
 //-----------------------------------------------------------------------------
 #pragma mark - Singleton
@@ -125,38 +92,33 @@ string type2str(int type) {
     Mat roi;
     bitwise_and(image, image, roi, mask);
     Mat thresh;
-    threshold(roi, thresh, 130.0, 255.0, THRESH_BINARY_INV);
+    threshold(roi, thresh, 130.0, 255.0, THRESH_BINARY);
     Mat kernel = getStructuringElement(MORPH_RECT, cv::Size(7, 7));
     Mat opening;
     morphologyEx(thresh, opening, MORPH_OPEN, kernel);
 
     bitwise_and(image, roi, thresholdImage, opening);
-//    Scalar skinValue(15, 94, 169);
-//    Mat thresh(roi.rows, roi.cols, CV_8UC1, Scalar(0));
-//    ParallelDifferenceThreshold diffThresh(roi, thresh, skinValue, 90);
-//    parallel_for_(Range(0, roi.rows * roi.cols), diffThresh);
+}
 
-//    bitwise_and(image, image, image, mask);
+- (NSUInteger)detectHitForHoles:(NSArray<WMHole *> *)holes
+             withThresholdImage:(const cv::Mat &)thresholdImage
+                   cameraMatrix:(const cv::Mat &)cameraMatrix {
+
+    NSArray<WMHole *> *sortedHoles = [holes sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]]];
+    for (WMHole *hole in sortedHoles) {
+        Mat full(thresholdImage.rows, thresholdImage.cols, CV_8UC1, Scalar(0));
+        [hole drawInImage:full usingCalibrationMatrix:cameraMatrix color:Scalar(255)];
+        Mat occluded;
+        bitwise_and(full, full, occluded, thresholdImage);
+        Scalar fullSum = sum(full);
+        Scalar occludedSum = sum(occluded);
+        if (((float) occludedSum[0]) / fullSum[0] < (1 - HIT_THRESHOLD)) {
+            return hole.index;
+        }
+    }
+
+    return NSNotFound;
 }
 
 @end
-
-// ParallelGradientCompute loop body
-ParallelDifferenceThreshold::ParallelDifferenceThreshold(Mat &image, Mat &thresh, const Scalar &values, double difference) :
-_image(image), _thresh(thresh), _values(values), _differenceSquared(difference * difference) { }
-
-void ParallelDifferenceThreshold::operator()(const cv::Range &range) const {
-    for (int r = range.start; r < range.end; ++r) {
-        int i = r / _image.cols;
-        int j = r % _image.cols;
-        Vec3b pixelValues = _image.ptr<Vec3b>(i)[j];
-        double diff0 = pixelValues[0] - _values[0];
-        double diff1 = pixelValues[1] - _values[1];
-        double diff2 = pixelValues[2] - _values[2];
-        double differenceSquared = (diff0 * diff0 +
-                                    diff1 * diff1 +
-                                    diff2 * diff2);
-        _thresh.ptr<uchar>(i)[j] = differenceSquared < _differenceSquared ? 255 : 0;
-    }
-}
 

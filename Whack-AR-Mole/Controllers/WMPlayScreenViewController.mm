@@ -87,15 +87,24 @@ using namespace std;
 
     if (fiducials.count >= 2) {
         WMCalibrator *calibrator = [[WMCalibrator alloc] initWithIdentifiedFiducials:fiducials];
-//        for (WMHole *hole in self.holes) {
-//            [hole drawInImage:image usingCalibrationMatrix:calibrator.cameraMatrix];
-//        }
-
-        // Detect hands
         Mat thresh;
-        [[WMHandDetector defaultDetector] detectHandInImage:image
+        [[WMHandDetector defaultDetector] detectHandInImage:gray
                                       usingCalibratedMatrix:calibrator.cameraMatrix
                                      toOutputThresholdImage:thresh];
+        NSUInteger hitIndex = [[WMHandDetector defaultDetector] detectHitForHoles:self.holes
+                                                               withThresholdImage:thresh
+                                                                     cameraMatrix:calibrator.cameraMatrix];
+        Mat holes = image.clone();
+        for (WMHole *hole in self.holes) {
+            if (hitIndex != hole.index) {
+                [hole drawInImage:holes usingCalibrationMatrix:calibrator.cameraMatrix];
+            } else {
+                [hole drawInImage:holes usingCalibrationMatrix:calibrator.cameraMatrix color:Scalar(0, 0, 255, 255)];
+            }
+        }
+
+        // Detect hands
+        bitwise_and(holes, holes, image, thresh);
     }
 }
 
