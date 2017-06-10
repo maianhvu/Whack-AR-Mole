@@ -46,7 +46,7 @@
     NSMutableArray<WMContour *> *contourArray = [NSMutableArray array];
     for (auto &contour : contours) {
         double area = contourArea(contour);
-        if (area < 700 || area > 10000) {
+        if (area < 700 || area > 50000) {
             continue;
         }
 
